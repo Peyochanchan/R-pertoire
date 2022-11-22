@@ -9,7 +9,7 @@ module ControllerMacros
   def login_admin
     before(:each) do
       @request.env['devise.mapping'] = Devise.mappings[:admin]
-      sign_in FactoryBot.create(:user_admin)
+      sign_in FactoryBot.create(:user, :admin)
     end
   end
 
@@ -23,7 +23,7 @@ module ControllerMacros
   def logout_admin
     before(:each) do
       @request.env['devise.mapping'] = Devise.mappings[:admin]
-      sign_out FactoryBot.create(:user_admin)
+      sign_out FactoryBot.create(:user, :admin)
     end
   end
 
@@ -32,7 +32,7 @@ module ControllerMacros
   end
 
   def setup_devise_mapping_admin
-    @request.env['devise.mapping'] = Devise.mappings[:user_admin]
+    @request.env['devise.mapping'] = Devise.mappings[:user, :admin]
   end
 
   def login_with_warden!

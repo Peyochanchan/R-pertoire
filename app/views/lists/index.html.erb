@@ -1,0 +1,48 @@
+<div class="container justify-content-center">
+  <div class="row justify-content-center p-2">
+    <div style="height: 60px;"></div>
+    <div class="container">
+      <div class="wrapper">
+        <div class="container justify-content-center">
+          <h1 class="text-center pt-4 pb-4 border-bottom"><%= current_user.admin? ? "#{t '.title_adm', locale: locale}" : "#{t '.title', locale: locale}" %></h1>
+          <div class=" d-flex justify-content-between p-2">
+            <h1 class="text-center btn btn-outline-dark">
+              <%= link_to t('.button_list', locale: locale), new_list_path(locale: locale) %>
+            </h1>
+            <h1 class="text-center btn btn-outline-dark">
+              <%= link_to t('.button_song', locale: locale), new_song_path(locale: locale) %>
+            </h1>
+          </div>
+          <div class="container mt-4 p-2 col-12">
+            <div class="listes m-3">
+              <h2 class="text-center"><%= t('.lists', locale: locale) %></h2>
+              <% if @lists.where(user: current_user).blank? %>
+              <h4 class="text-center"><%= t '.blank', locale: locale %></h4>
+              <% else %>
+              <% @lists.each do |list| %>
+              <% if policy(list).show? %>
+              <%= render 'shared/card', item: list %>
+              <% end -%>
+              <% end -%>
+              <!-- </h4> -->
+              <% end -%>
+            </div>
+            <div class="songs m-3">
+              <h2 class="text-center"><%= t('.songs', locale: locale) %></h2>
+              <% if @songs.blank? %>
+              <h4 class="text-center">Vous n'avez pas encore créé de chanson</h4>
+              <% else %>
+              <% @songs.each do |song| %>
+              <% if policy(song).show? %>
+              <%= render 'shared/card', item: song %>
+              <% end -%>
+              <% end %>
+              <% end -%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="height: 60px;"></div>

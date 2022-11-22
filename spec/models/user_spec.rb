@@ -20,6 +20,19 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-    
-#   end
-# end
+RSpec.describe 'User', type: :model do
+  context 'user creation' do
+    let(:user) { FactoryBot.create(:user) }
+    it 'should check if the user is created' do
+      expect(user).not_to be_nil
+      expect(User.count).to eq(1)
+    end
+
+    it 'should check if the admin user is created' do
+      user.admin = true
+      user.save
+      expect(user).not_to be_nil
+      expect(user.admin).to be_truthy
+    end
+  end
+end

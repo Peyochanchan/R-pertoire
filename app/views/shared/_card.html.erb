@@ -1,0 +1,38 @@
+<div class="card card-body m-2">
+  <div class="titre-hover d-flex justify-content-between align-items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="<%= item.public? ? " green" : "red" %>" class="bi bi-circle-fill" viewBox="0 0 24 24">
+      <circle cx="9" cy="9" r="8" stroke="black" stroke-width="1" />
+    </svg>
+    <%# if current_user && item.user_id == current_user.id && item.public == false %>
+    <% if policy(item).index? %>
+    <h6 class="text-center mx-4 mt-1" style="color: #C45E26">privé</h6>
+    <% else %>
+    <h6 class="text-center mx-4 mt-1" style="color: #C45E26">
+      <%= t 'card.cree', locale: locale %>
+      <%= item.user.nickname %>
+    </h6>
+    <% end %>
+    <%= link_to polymorphic_url(item, locale: locale), class: "text-center", style: "flex: 1" do %>
+    <% if item.has_attribute?(:title) %>
+    <div class="titres d-flex justify-content-around">
+    <h4 class='item-card'>
+      <%=  item.title %>
+    </h4>
+    <h4 style="font-size: smaller">
+      ( <%= item[translater('title')[I18n.locale]] %> )
+    </h4>
+  </div>
+    <% elsif item.has_attribute?(:name) %>
+        <div class="titres d-flex justify-content-around">
+
+    <h4 class='item-card'>
+      <%=  item.name %>
+    </h4>
+    <h4 style="font-size: smaller">
+      ( <%= item[translater('name')[I18n.locale]] %> )
+    </h4>
+    </div>
+    <% end -%>
+    <% end -%>
+  </div>
+</div>

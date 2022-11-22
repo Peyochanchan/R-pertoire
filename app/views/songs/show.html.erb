@@ -1,0 +1,28 @@
+<div style="height: 60px;"></div>
+<div class="container">
+  <% if user_signed_in? %>
+  <%= link_to "#{t('buttons.edit-song', locale: locale)}", edit_song_path(@song, locale: I18n.locale), class: "croyable m-3" if policy(@song).edit? %>
+  <% end -%>
+
+  <h1 class="text-center pt-4">
+    <%= @song.title %>
+    <%= @same_language != locale.to_s ? " ( " + @song[translater('title')[I18n.locale]] + " )" : "" %>
+  </h1>
+  <h3 class="text-end p-5">
+    <%= @song.composer %>
+  </h3>
+  <% if @same_language != locale.to_s  %>
+  <div class="d-flex justify-content-around">
+    <div class="lyrics p-3">
+      <%= simple_format(@song.lyrics, { dir: 'auto' }, sanitize:false) %>
+    </div>
+    <div class="translation p-3">
+      <%= simple_format(@song[translater('lyrics')[I18n.locale]], { dir: 'auto' }, sanitize:false) %>
+    </div>
+    <% else %>
+    <div class="lyrics p-3 text-center" dir="rtl" style="font-size: 130%">
+      <%= simple_format(@song.lyrics, { dir: 'auto' }, sanitize:false) %>
+    </div>
+    <% end -%>
+  </div>
+</div>

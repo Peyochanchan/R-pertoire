@@ -20,10 +20,20 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-require "test_helper"
+FactoryBot.define do
+  factory :user do
+    sequence(:id) { |n| n }
+    sequence(:first_name) { |n| "User#{n}" }
+    sequence(:last_name) { |n| "#{n}name" }
+    sequence(:nickname) { |n| "User#{n}" }
+    sequence(:email) { |n| "user#{n}@maison.com" }
+    admin { false }
+    password { '123456' }
+    created_at { Time.now }
+    updated_at { Time.now }
 
-class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+    trait :admin do
+      admin { true }
+    end
+  end
 end

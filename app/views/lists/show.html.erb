@@ -1,0 +1,17 @@
+<div style="height: 60px;"></div>
+<div class="container">
+  <div class="wrapper m-2">
+    <div class="cadre-liste p-2">
+      <h1 class="text-center m-2 p-2">
+        <%= sanitize(@list.name) %>
+      </h1>
+      <p><%= sanitize(t('.description_html', description: @list[@description_translater_hash[I18n.locale]])) %></p>
+      <% if user_signed_in? %>
+      <div class="d-flex justify-content-center">
+        <%= link_to "#{t('buttons.edit-list', locale: locale)}", edit_list_path(@list, locale: locale), class: "btn btn-outline-dark text-center" if policy(@list).edit? %>
+      </div>
+      <br>
+      <% end -%>
+    </div>
+  </div>
+</div>

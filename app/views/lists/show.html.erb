@@ -56,5 +56,16 @@
       <% end -%>
       <%= render 'list_songs/form', list: @list, list_song: @list_song %>
     </div>
+    <% if policy(@list).show? %>
+      <div class="qr-code d-flex justify-content-center my-4">
+      <%= link_to list_path(@list, format: 'pdf', locale: locale) do %>
+        <div id="qr_code">
+        <%= @list.qr_code.html_safe %>
+        </div>
+        <%#= image_tag "logo_repertoire.png", class: "qr-code-logo" %>
+      <% end -%>
+      </div>
+      <p class="text-center"><%= t 'buttons.export', locale: locale %></p>
+    <% end -%>
   </div>
 </div>

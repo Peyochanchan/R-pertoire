@@ -9,6 +9,7 @@ nb:
     translate_title: 'Oversett tittelen på nytt'
     edit-song: 'Rediger sangen'
     lyrics: 'Sangtekster'
+    export: 'klikk på QR-koden ovenfor for å eksportere listen og QR-koden i PDF'
     deletes: 'Fjern merking'
     add_list_song: 'Legge til en sang i listen'
     list_song: 'Klikk for å finne listen over sangene dine'

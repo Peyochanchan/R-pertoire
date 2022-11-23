@@ -9,6 +9,7 @@ ar:
     translate_title: 'ترجمة العنوان مرة أخرى'
     edit-song: 'تحرير الأغنية'
     lyrics: 'كلمات'
+    export: 'انقر فوق QR-Code أعلاه لتصدير القائمة و QR-Code في PDF'
     deletes: 'مسح التحديد'
     add_list_song: 'إضافة أغنية إلى القائمة'
     list_song: 'انقر للعثور على قائمة أغانيك'

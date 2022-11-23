@@ -18,6 +18,21 @@ class ListsController < ApplicationController
     @lsongs = @list.list_songs.order(position: :asc)
     @description_translater_hash = I18n.available_locales.to_h { |lang| [lang, "description_#{lang}".to_sym] }
     @name_translater_hash = I18n.available_locales.to_h { |lang| [lang, "name_#{lang}".to_sym] }
+    @list.qr_code = RQRCode::QRCode.new(list_url(@list)).as_svg(
+      offset: 0,
+      color: '000',
+      module_size: 5,
+      shape_rendering: 'geometricPrecision',
+      standalone: true,
+      use_path: true
+    )
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ListPdf.new(@list, @lsongs)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
     authorize @list
   end
 
@@ -118,6 +133,7 @@ class ListsController < ApplicationController
                                  :description_nb,
                                  :description_ar,
                                  :public,
+                                 :qr_code,
                                  :user_id,
                                  :photo,
                                  song_ids: [])

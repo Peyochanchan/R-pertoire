@@ -9,6 +9,7 @@ en:
     translate_title: 'Translate the Title again'
     edit-song: 'Edit the Song'
     lyrics: 'Lyrics'
+    export: 'click on the QR-Code above to export the list and the QR-Code in PDF'
     deletes: 'Delete selected'
     add_list_song: 'Add a Song to the List'
     list_song: 'Click to find the list of your songs'

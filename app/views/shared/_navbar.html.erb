@@ -16,9 +16,9 @@
           <%= link_to "#{t('lists.index.title', locale: locale)}", user_root_path, class: "dropdown-item" %>
       <%= link_to "#{t('devise.sessions.sign_out', locale: locale)}", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
       <%= link_to "#{t('navbar.edit_profile', locale: locale)}", edit_user_registration_path, class: "dropdown-item" %>
-      <% if current_user.admin? %>
-      <%= link_to 'Admin Dashboard', admin_dashboard_path, class: "dropdown-item", target: :_blank %>
-      <% end -%>
+      <%# if current_user.admin? %>
+      <%#= link_to 'Admin Dashboard', admin_dashboard_path, class: "dropdown-item", target: :_blank %>
+      <%# end -%>
     </div>
     <% else %>
       <h4> <%= link_to "#{t('devise.sessions.new.sign_in', locale: locale)}", new_user_session_path(locale: locale), id: "sign-in-nav" %></h4>

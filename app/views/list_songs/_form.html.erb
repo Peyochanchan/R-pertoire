@@ -1,0 +1,33 @@
+<div class="text-center">
+  <% if user_signed_in? %>
+  <% if current_user == @list.user || current_user.admin? %>
+
+  <%= simple_form_for [list, list_song], data: {
+                                                insert_in_list_target: 'form',
+                                                action: 'submit->insert-in-list#send' } do |f| %>
+  <div class="row justify-content-center">
+    <%#= f.hidden_field :list_id %>
+    <%#= hidden_field_tag list_song.list_id  %>
+    <%= f.association :song, collection: Song.where(user: current_user).or(Song.where(public: true)),
+                             label: false,
+                             label_method: lambda { |ls| "#{ls.title} - #{ls.composer}" },
+                             input_html: {
+                                          # multiple: false, required: true,
+                                          data: {controller: "tom-select",
+                                                 tom_select_options_value: {tags: true, placeholder: "#{t('buttons.list_song', locale: locale)}"}
+                                                }
+                                         } %>
+    <%= f.input :tonality, as: :select, collection: ListSong::TONALITIES,
+                                        label: false,
+                                        input_html: {
+                                          multiple: false,
+                                          data: {controller: "tom-select",
+                                                 tom_select_options_value: {tags: true, placeholder: "#{t'buttons.tonality', locale: locale}"}
+                                                }
+                                         } %>
+  </div>
+  <%= f.submit "#{t('buttons.add_list_song', locale: locale)}", class: "btn btn-outline-dark m-1" %>
+  <% end -%>
+  <% end -%>
+  <% end -%>
+</div>

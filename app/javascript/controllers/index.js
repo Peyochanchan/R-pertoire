@@ -9,3 +9,15 @@ application.register("clock", ClockController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import InsertInListController from "./insert_in_list_controller"
+application.register("insert-in-list", InsertInListController)
+
+import RevealController from "./reveal_controller"
+application.register("reveal", RevealController)
+
+import SwalController from "./swal_controller"
+application.register("swal", SwalController)
+
+import TomSelectController from "./tom_select_controller"
+application.register("tom-select", TomSelectController)

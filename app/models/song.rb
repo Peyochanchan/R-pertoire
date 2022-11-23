@@ -30,5 +30,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Song < ApplicationRecord
+  has_many :list_songs, dependent: :destroy
+  has_many :lists, through: :list_songs
   belongs_to :user
+
+  accepts_nested_attributes_for :lists, :list_songs
 end

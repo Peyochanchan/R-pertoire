@@ -1,6 +1,9 @@
+require "open-uri"
+
 class ListsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[show]
+  skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_params, only: %i[show edit update destroy]
+  before_action :update_position, only: :show
 
   def index
     @lists = policy_scope(List).order(public: :asc)
@@ -8,11 +11,20 @@ class ListsController < ApplicationController
   end
 
   def show
+    @list_song = ListSong.new
+    params[:list_id] = @list.id
+    @list_song.list_id = @list.id
+    @songs = policy_scope(Song)
+    @lsongs = @list.list_songs.order(position: :asc)
+    @description_translater_hash = I18n.available_locales.to_h { |lang| [lang, "description_#{lang}".to_sym] }
+    @name_translater_hash = I18n.available_locales.to_h { |lang| [lang, "name_#{lang}".to_sym] }
     authorize @list
   end
 
   def new
     @list = List.new
+    @list_song = ListSong.new
+    params[:list_id] = @list.id
     authorize @list
   end
 
@@ -34,6 +46,7 @@ class ListsController < ApplicationController
   end
 
   def edit
+    @list_song = ListSong.new
     authorize @list
   end
 
@@ -79,6 +92,14 @@ class ListsController < ApplicationController
     end
   end
 
+  def update_position
+    @list = List.find(params[:id])
+    @list.list_songs.each_with_index do |lsong, i|
+      lsong.position = i + 1
+      lsong.save!
+    end
+  end
+
   def set_params
     @list = List.find(params[:id])
   end
@@ -97,6 +118,8 @@ class ListsController < ApplicationController
                                  :description_nb,
                                  :description_ar,
                                  :public,
-                                 :user_id)
+                                 :user_id,
+                                 :photo,
+                                 song_ids: [])
   end
 end

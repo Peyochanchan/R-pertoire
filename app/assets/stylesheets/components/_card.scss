@@ -1,0 +1,101 @@
+.card {
+  background: white;
+  color: black;
+  box-shadow: 2px 2px 0px 0px hsla(86, 21%, 44%, 0.2);
+  &:hover {
+    cursor: pointer;
+    border: 1px solid hsla(0, 0, 0, 0.3);
+    box-shadow: inset 0 1px 4px hsla(0, 0, 0, 0.2);
+  }
+}
+
+.lsong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    margin : 4px;
+  }
+  .trad {
+    font-size: small;
+  }
+}
+
+.card-body {
+  display: flex;
+}
+
+.item-card {
+  text-align:center;
+  color: black;
+  &:hover {
+      color: $vorange;
+  }
+}
+
+.titres {
+  align-items: center;
+  h4 {
+    margin: 0;
+    vertical-align: center;
+  }
+}
+#position {
+  text-align: center;
+  a:hover {
+    cursor: pointer;
+      color: $vorange;
+  }
+  // border: 3px solid $gray;
+  // border-radius: 50%;
+  // padding: 8px;
+}
+
+#paroles-delete {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  .accept_tos {
+    margin: 10px;
+  }
+}
+
+#delete-card {
+  content: '\f007';
+  font-family: FontAwesome;
+  position: absolute;
+  z-index: 10;
+  right: 15px;
+  top: 20px;
+  width: 20px;
+  color: hsla(0, 0, 0, .2);
+  text-align: center;
+  &:hover {
+      color: $vorange;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cadre-liste {
+    a {
+      text-align: center;
+    }
+  }
+  .titre-hover {
+    flex-direction: column;
+    a { order: 1}
+  }
+  .lsong {
+    flex-direction: column;
+    h1 {
+      font-size: 3;
+    }
+  }
+  #paroles-delete {
+    flex-direction: column;
+  }
+}
+
+
+
+

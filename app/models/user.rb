@@ -26,6 +26,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :songs, dependent: :destroy
+  has_many :lists, dependent: :destroy
   has_one_attached :avatar
   validates :nickname, uniqueness: true
 end

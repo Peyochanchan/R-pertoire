@@ -1,0 +1,28 @@
+<div data-id="<%= lsong.id %>" data-list-id="<%= lsong.list_id %>" class="card card-body my-2" id="lsong-<%=lsong.id%>">
+  <div class="lsong">
+    <h1 style="flex: 1;">
+      <span id="position" data-drag-target="position">
+        <%= lsong.position %>
+      </span></h1>
+    <h1 class="text-center" style="flex:4">
+      <%= lsong.song.title%>
+    </h1>
+    <h1><%= lsong.tonality if lsong.tonality.present? %></h1>
+    <% if @same_language %>
+    <h1 class="trad">
+      <%= " (#{lsong.song[translater('title')[I18n.locale]]})" %>
+    </h1>
+    <% end -%>
+    <div id="paroles-delete">
+      <% if user_signed_in? %>
+      <%= link_to "#{t('buttons.lyrics', locale: locale)}", song_path(lsong.song_id), class: "mx-1 btn btn-outline-secondary" if policy(lsong.song).show? %>
+      <% end -%>
+      <% if user_signed_in? && (current_user == lsong.list.user || current_user.admin?) %>
+      <%# if params[:list_songs] && policy(lsong).destroy_multiple? %>
+      <% if !lsong.list.blank? %>
+      <%= check_box_tag "list_songs[]", lsong.id, false, class: 'accept_tos' %>
+      <% end -%>
+      <% end -%>
+    </div>
+  </div>
+</div>

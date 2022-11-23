@@ -1,0 +1,118 @@
+es:
+  buttons:
+    select_language: 'seleccione un idioma'
+    connect: 'Registro'
+    edit-list: 'Editar la lista'
+    translate_name: 'Traducir el nombre de nuevo'
+    translate_description: 'Traducir la descripción de nuevo'
+    translate_lyrics: 'Traduce la letra de nuevo'
+    translate_title: 'Traduce el título de nuevo'
+    edit-song: 'Editar la canción'
+    lyrics: 'Letras'
+    deletes: 'Selección clara'
+    add_list_song: 'Agregar una canción a la lista'
+    list_song: 'Haz clic para encontrar la lista de tus canciones'
+    tonality: 'clave'
+  hint:
+    password: 'déjalo en blanco si no quieres cambiarlo'
+    current_password: 'escribe tu contraseña para confirmar los cambios'
+    avatar: 'Elige una imagen para tu avatar.'
+  fieldset:
+    placeholder:
+      first_name: 'Primer nombre'
+      last_name: 'apellido'
+      username: 'Apodo'
+      email: 'Correo electrónico'
+      password: 'Contraseña (%{number} mínimo de caracteres)'
+      confirm_password: 'Confirmar contraseña'
+  swal:
+    accept: 'Sí'
+    cancel: 'Cancelar'
+    confirm: '¿Estás seguro?'
+  song:
+    lyrics: '%{translation}'
+    title: '%{title_translation}'
+  card:
+    cree: 'creado por'
+  languages:
+    ar: 'ar - Árábe'
+    en: 'en - Inglés'
+    es: 'es - Castellano'
+    fr: 'fr - Francés'
+    nb: 'no - Noruego'
+    ru: 'ru - Ruso'
+    zh: 'zh - Chino'
+    pt: 'pt - Portugués'
+  navbar:
+    repertoire: 'Repertorio'
+    edit_profile: 'Editar perfil'
+  footer:
+    find_me: 'Puedes encontrar mi sitio web y explorar todos mis proyectos en'
+  pages:
+    home:
+      repertoire: 'Repertorio'
+      header_title_html: 'Inicia sesión y crea tus programas de canciones en línea, con un enlace a la letra de cada canción y su traducción'
+      lists: 'Listas públicas'
+      songs: 'Canciones públicas'
+      discover: 'O descubre las listas y canciones hechas públicas por los usuarios'
+      write: 'Escribe tus canciones, letras, la aplicación se encarga de las traducciones. Puedes crear tus listas según tus bandas, tus conciertos, tus diferentes sets'
+      find: 'Encuentra fácilmente el orden que más te convenga arrastrándolos de un lugar a otro.'
+      only_you: 'Depende solo de ti decidir cuándo tus listas pueden ser públicas o no, así como las letras de tus canciones.'
+      qr_code: 'Tienes una herramienta generadora de código QR. Si quieres desvelar tu Repertorio para la velada. Si juegas en el extranjero, puedes publicar tus canciones. Para que el público entienda tus letras gracias a la herramienta de traducción incorporada.'
+  lists:
+    index:
+      title: 'Tu espacio personal'
+      title_adm: 'Su área de administración'
+      button_list: 'Crear una lista'
+      button_song: 'Crear una canción'
+      lists: 'Listas'
+      songs: 'Canciones'
+      blank: 'Aún no has creado una lista'
+      blank_song: 'Aún no has creado una canción'
+    show:
+      name_html: '%{name}'
+      description_html: '%{description}'
+  songs:
+    edit:
+      title: 'Tu canción'
+  activerecord:
+    models:
+      list:
+        one: 'Lista'
+        other: 'Listas'
+      song:
+        one: 'Cancion'
+        other: 'Canciones'
+    attributes:
+      list:
+        name: 'Nombre'
+        name_nb: 'Nombre en noruego'
+        name_fr: 'nombre en frances'
+        name_es: 'Nombre en español'
+        name_en: 'Nombre en ingles'
+        name_ar: 'Nombre en árabe'
+        public: 'público'
+        photo: 'Foto'
+        description: 'Description'
+        description_nb: 'Descripción en noruego'
+        description_fr: 'Descripción en frances'
+        description_es: 'Descripción en español'
+        description_en: 'Descripción en ingles'
+        description_ar: 'Descripción en árabe'
+      song:
+        title: 'Título'
+        title_fr: 'título francés'
+        title_en: 'Titulo en ingles'
+        title_es: 'Titulo en español'
+        title_nb: 'Título en noruego'
+        title_ar: 'Título en árabe'
+        lyrics: 'Letra'
+        composer: 'Compositor'
+        translation_fr: 'Traducción en francés'
+        translation_nb: 'traduccion noruega'
+        translation_es: 'Traducción Española'
+        translation_en: 'Traducción en inglés'
+        translation_ar: 'traduccion arabe'
+  pundit:
+    default: 'Lo sentimos, no tienes permiso para realizar esta acción.'
+    translation-error: 'Lo siento, esta es una versión de demostración. No puede crear una %{record} porque la API de Google Cloud Translation no es gratuita'

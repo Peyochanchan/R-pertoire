@@ -17,8 +17,7 @@ export default class extends Controller {
                     "checkbox_title"]
 
   connect() {
-    console.log('say hello')
-    console.log('checkbox', this.checkbox_nameTarget)
+    // console.log('say hello')
     // this.toggleForm(this.item_nameTarget, this.nameTargets, this.checkbox_nameTarget)
   }
 

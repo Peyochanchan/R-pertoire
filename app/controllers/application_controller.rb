@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = params.fetch(:locale, I18n.locale).to_sym
+    I18n.locale = (session[:locale] || params[:locale]).to_s.downcase.presence || I18n.default_locale
   end
 
   private

@@ -10,7 +10,6 @@
 
 // Your CSS partials
 @import "components/index";
-@import "pages/index";
 
 body {
   // min-height: 100%;
@@ -39,11 +38,11 @@ a:hover {
 
 .wrapper {
   background-color: hsl(30, 33%, 95%);
-  box-shadow: 0 3px 25px hsla(0, 0, 0, 0.2);
+  box-shadow: 0 3px 25px hsla(0, 0%, 0%, 0.2%);
 }
 
 .cadre-liste {
   border-radius: 12px;
   background: linear-gradient(0.47turn, hsl(35, 95%, 56%), hsl(21, 67%, 46%));
-  box-shadow: 0 3px 25px hsla(0, 0, 0, 0.2);
+  box-shadow: 0 3px 25px hsla(0, 0%, 0%, 0.2%);
 }

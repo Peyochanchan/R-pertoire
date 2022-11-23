@@ -20,13 +20,13 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
+    { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale,
     # { host: ENV.fetch('DOMAIN') || 'localhost:3000' }
-    { host: 'localhost:3000' }
+      host: 'localhost:3000' }
   end
 
   def set_locale
-    I18n.locale = (session[:locale] || params[:locale]).to_s.downcase.presence || I18n.default_locale
+    I18n.locale = params.fetch(:locale, I18n.locale).to_sym
   end
 
   private

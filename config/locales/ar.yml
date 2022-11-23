@@ -33,8 +33,6 @@ ar:
   navbar:
     repertoire: 'مرجع'
     edit_profile: 'تعديل الملف الشخصي'
-  footer:
-    find_me: 'يمكنك العثور على موقع الويب الخاص بي واستكشاف جميع مشاريعي في'
   lists:
     index:
       title: 'مساحتك الشخصية'

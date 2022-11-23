@@ -5,4 +5,8 @@ class PagesController < ApplicationController
     @lists = policy_scope(List)
     @songs = policy_scope(Song)
   end
+
+  def poldeconf; end
+
+  def cgu; end
 end

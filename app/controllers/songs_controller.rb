@@ -91,9 +91,9 @@ class SongsController < ApplicationController
   end
 
   def update_song_translation(song, attribute)
-    translater_hash = I18n.available_locales.map { |lang| [lang, "#{attribute}_#{lang}".to_sym] }.to_h
+    translater_hash = I18n.available_locales.to_h { |lang| [lang, "#{attribute}_#{lang}".to_sym] }
     translate = Google::Cloud::Translate::V2.new(
-      key: ENV.fetch['CLIENT_ID']
+      key: ENV.fetch('CLIENT_ID')
     )
     if attribute == 'lyrics'
       song.lyrics = params[:song][:lyrics].gsub!(%r{\r|\n|(<br/>)|(<br><br>)|(<br/><br/>)}, '<br/>')

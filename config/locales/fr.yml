@@ -10,6 +10,7 @@ fr:
     translate_title: 'Traduire à nouveau le titre'
     edit-song: 'Editer la Chanson'
     lyrics: 'Paroles'
+    export: 'cliquez sur le QR-Code ci-dessus pour exporter la liste et le QR-Code en PDF'
     deletes: 'Effacer la sélection'
     add_list_song: 'Ajouter une chanson à la liste'
     list_song: 'Cliquer pour retrouver la liste de vos chansons'

@@ -1,0 +1,37 @@
+a.qr-code-box {
+  align-self: center;
+  width: 180px;
+  height: 180px;
+  text-align: center;
+  display:flex;
+  justify-content: center;
+}
+
+
+#qr_code {
+  padding: 4px;
+    border: 2px solid hsla(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 0px 0px hsla(86, 21%, 44%, 0.2);
+  &:hover {
+    cursor: pointer;
+    border: 2px solid hsla(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px hsla(0, 0, 0, 0.2);
+  }
+}
+
+// .qr-code {
+//   position: relative;
+//   // cursor: default;
+// }
+
+// .qr-code-logo {
+//   position: absolute;
+//   width: 30px;
+//   left: 48%;
+//   top: 41%;
+//   background-color: #CA6627;
+//   border: 1px solid #EFBA38;
+//   border-radius: 50px;
+//   font-weight: 800;
+//   padding: 4px;
+// }

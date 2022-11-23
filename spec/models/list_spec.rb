@@ -16,6 +16,7 @@
 #  name_fr        :string
 #  name_nb        :string
 #  public         :boolean
+#  qr_code        :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  user_id        :bigint           not null

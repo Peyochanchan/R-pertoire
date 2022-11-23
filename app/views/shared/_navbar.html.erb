@@ -1,0 +1,96 @@
+<ul class="navbar-mh">
+    <% if user_signed_in? %>
+
+  <li id="nav-sign-in">
+    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+      <% if !current_user.avatar.attached? %>
+        <%= cl_image_tag"elglfmukvxjtg42my0hidy23216p.jpg", class: "avatar" %>
+      <% else %>
+        <%= cl_image_tag current_user.avatar.key, class: "avatar" %>
+      <% end -%>
+    </a>
+
+    <div class="dropdown-menu text-center">
+      <h6><b>Hello
+          <%= current_user.email %></b></h6>
+          <%= link_to "#{t('lists.index.title', locale: locale)}", user_root_path, class: "dropdown-item" %>
+      <%= link_to "#{t('devise.sessions.sign_out', locale: locale)}", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+      <%= link_to "#{t('navbar.edit_profile', locale: locale)}", edit_user_registration_path, class: "dropdown-item" %>
+      <% if current_user.admin? %>
+      <%= link_to 'Admin Dashboard', admin_dashboard_path, class: "dropdown-item", target: :_blank %>
+      <% end -%>
+    </div>
+    <% else %>
+      <h4> <%= link_to "#{t('devise.sessions.new.sign_in', locale: locale)}", new_user_session_path(locale: locale), id: "sign-in-nav" %></h4>
+    <% end %>
+  </li>
+      <li id='logo-nav'>
+    <%= link_to home_path(locale: locale) do %>
+      <div class="logo-nav liens">
+        <%= image_tag('logo_repertoire.png', alt: "logo repertoire") %>
+        <h4><%= t('navbar.repertoire', locale: locale) %></h4>
+      </div>
+    <% end -%>
+    </li>
+    <!-- <li class="d-flex align-items-center"> -->
+      <%#= simple_form_for locale, method: :get do %>
+      <%#= select_tag :locale, options_for_select(map_locale_names(I18n.locale)),
+      data:
+      {
+        controller: "tom-select",
+        tom_select_options_value: {tags: true}
+      },
+      prompt: 'select your language',
+      onchange: "this.form.submit();" %>
+      <%# end -%>
+    <!-- </li> -->
+  <li id="lang">
+    <%= render 'shared/flags' %>
+  </li>
+</ul>
+  <div class="mobile-menu-mh" data-controller="css" data-css-class="show">
+  <div class="burger" data-action="click->css#toggleClass">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="mask"></div>
+  <ul>
+    <li>
+      <% if user_signed_in? %>
+
+    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+      <% if !current_user.avatar.attached? %>
+        <%= cl_image_tag"elglfmukvxjtg42my0hidy23216p.jpg", class: "avatar" %>
+      <% else %>
+        <%= cl_image_tag current_user.avatar.key, class: "avatar" %>
+      <% end -%>
+    </a>
+
+    <div class="dropdown-menu text-center p-1">
+      <h6><b>Hello
+          <%= current_user.email %></b></h6>
+          <div class="d-flex flex-column">
+      <%= link_to "#{t('lists.index.title', locale: locale)}", user_root_path, class: "link-nav" %>
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "link-nav" %>
+      <%= link_to "Edit Profile", edit_user_registration_path, class: "link-nav" %>
+    </div>
+
+    <% else %>
+      <%= link_to "#{t('devise.sessions.new.sign_in', locale: locale)}", new_user_session_path(locale: locale) %>
+    <% end %>
+  </li>
+    <li id='logo-nav'>
+    <%= link_to home_path(locale: locale) do %>
+      <div class="logo-nav liens">
+        <%= image_tag('logo_repertoire.png', alt: "logo repertoire") %>
+        <h4><%= t 'home.repertoire', locale: locale %></h4>
+      </div>
+    <% end -%>
+    </li>
+    <li id="lang">
+      <%= render 'shared/flags' %>
+    </li>
+  </ul>
+
+</div>

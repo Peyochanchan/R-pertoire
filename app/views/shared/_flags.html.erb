@@ -1,0 +1,43 @@
+<div class="d-flex mx-3">
+<% if I18n.locale == :fr %>
+    <h2 class="d-flex ml-3">
+      <h2>🇫🇷</h2>
+      <%= link_to "🇬🇧", { locale: 'en' } %>
+      <%= link_to "🇳🇴", { locale: 'nb' } %>
+      <%= link_to "🇱🇾", { locale: 'ar' } %>
+      <%= link_to "🇪🇸", { locale: 'es' } %>
+    </h2>
+  <% elsif I18n.locale == :en %>
+    <h2 class="d-flex">
+      <%= link_to "🇫🇷", { locale: 'fr' } %>
+      <h2>🇬🇧</h2>
+      <%= link_to "🇳🇴", { locale: 'nb' } %>
+      <%= link_to "🇱🇾", { locale: 'ar' } %>
+      <%= link_to "🇪🇸", { locale: 'es' } %>
+    </h2>
+  <% elsif I18n.locale == :ar %>
+    <h2 class="d-flex">
+      <%= link_to "🇫🇷", { locale: 'fr' } %>
+      <%= link_to "🇬🇧", { locale: 'en' } %>
+      <%= link_to "🇳🇴", { locale: 'nb' } %>
+      <h2>🇱🇾</h2>
+      <%= link_to "🇪🇸", { locale: 'es' } %>
+    </h2>
+  <% elsif I18n.locale == :es %>
+    <h2 class="d-flex">
+      <%= link_to "🇫🇷", { locale: 'fr' } %>
+      <%= link_to "🇬🇧", { locale: 'en' } %>
+      <%= link_to "🇳🇴", { locale: 'nb' } %>
+      <%= link_to "🇱🇾", { locale: 'ar' } %>
+      <h2>🇪🇸</h2>
+    </h2>
+  <% elsif I18n.locale == :nb %>
+    <h2 class="d-flex">
+      <%= link_to "🇫🇷", { locale: 'fr' } %>
+      <%= link_to "🇬🇧", { locale: 'en' } %>
+      <h2>🇳🇴</h2>
+      <%= link_to "🇱🇾", { locale: 'ar' } %>
+      <%= link_to "🇪🇸", { locale: 'es' } %>
+    </h2>
+  <% end %>
+</div>

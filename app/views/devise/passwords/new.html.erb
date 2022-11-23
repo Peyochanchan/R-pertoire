@@ -1,18 +1,20 @@
-<h2>Forgot your password?</h2>
+<div class="container-fond"></div>
+<div class="signup" style="top: 40%;">
+  <div class="signup-okay justify-content-center">
+<h3 class="text-center"><b><%= t '.forgot_your_password', locale: locale %></b></h3>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name, locale: locale), html: { method: :post, class: "form"  }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource, locale: locale %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
+      <fieldset class="email">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "#{t('fieldset.placeholder.email', locale: locale, dir: 'auto')}" %>
+      </fieldset>
+  <div class="actions">
+    <%= f.submit "#{t '.send_me_reset_password_instructions', locale: locale}", class: 'croyable' %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>
+</div>

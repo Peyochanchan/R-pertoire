@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  get 'sessions/new'
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  } do
+    # get '/users/sign_out', to: 'devise/sessions#destroy'
+  end
 
   unauthenticated :user do
     root to: 'pages#home', as: :home

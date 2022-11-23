@@ -1,0 +1,128 @@
+ar:
+  buttons:
+    select_language: 'اختر لغة'
+    connect: 'سجل'
+    edit-list: 'تحرير القائمة'
+    translate_name: 'ترجم الاسم مرة أخرى'
+    translate_description: 'ترجم الوصف مرة أخرى'
+    translate_lyrics: 'ترجمة كلمات الأغاني مرة أخرى'
+    translate_title: 'ترجمة العنوان مرة أخرى'
+    edit-song: 'تحرير الأغنية'
+    lyrics: 'كلمات'
+    deletes: 'مسح التحديد'
+    add_list_song: 'إضافة أغنية إلى القائمة'
+    list_song: 'انقر للعثور على قائمة أغانيك'
+    tonality: 'مفتاح في'
+  hint:
+    password: 'اتركه فارغًا إذا كنت لا تريد تغييره'
+    current_password: 'اكتب كلمة المرور الخاصة بك لتأكيد التغييرات'
+    avatar: 'اختر صورة لأفاتار الخاص بك'
+  fieldset:
+    placeholder:
+      first_name: 'الاسم الاول'
+      last_name: 'اللقب'
+      username: 'اسم المستخدم'
+      email: 'البريد الإلكتروني'
+      password: 'كلمة المرور (%{number} الحد الأدنى من الأحرف)'
+      confirm_password: 'تأكيد كلمة المرور'
+  swal:
+    accept: 'نعم'
+    cancel: 'إلغاء الأمر'
+    confirm: 'هل أنت متأكد؟'
+  navbar:
+    repertoire: 'مرجع'
+    edit_profile: 'تعديل الملف الشخصي'
+  footer:
+    find_me: 'يمكنك العثور على موقع الويب الخاص بي واستكشاف جميع مشاريعي في'
+  lists:
+    index:
+      title: 'مساحتك الشخصية'
+      title_adm: 'منطقة الإدارة الخاصة بك'
+      button_list: 'إنشاء قائمة'
+      button_song: 'إنشاء أغنية'
+      lists: 'القوائم'
+      songs: 'اغان'
+      blank: 'لم تقم بإنشاء قائمة بعد'
+      blank_song: 'لم تقم بإنشاء أغنية بعد'
+    show:
+      name_html: '%{name}'
+      description_html: '%{description}'
+  songs:
+    edit:
+      title: 'أغنيتك'
+  pages:
+    home:
+      repertoire: 'مرجع'
+      header_title_html: 'قم بتسجيل الدخول وإنشاء برامج الأغاني الخاصة بك عبر الإنترنت ، مع رابط إلى كلمات كل أغنية وترجمتها'
+      lists: 'القوائم العامة'
+      songs: 'الأغاني العامة'
+      discover: 'أو اكتشف القوائم والأغاني التي نشرها المستخدمون'
+      write: 'اكتب أغانيك وكلماتك ، ويهتم التطبيق بالترجمات. يمكنك إنشاء قوائمك وفقا لفرقك الموسيقية وحفلاتك الموسيقية ومجموعاتك المختلفة'
+      find: 'يمكنك بسهولة العثور على الترتيب الذي يناسبك عن طريق سحبها من مكان إلى آخر.'
+      only_you: 'الأمر متروك لك وحدك لتحديد متى يمكن أن تكون قوائمك عامة أم لا ، بالإضافة إلى كلمات أغانيك.'
+      qr_code: 'لديك أداة مولد رمز الاستجابة السريعة. إذا كنت ترغب في كشف النقاب عن ذخيرتك في المساء. إذا كنت تلعب في الخارج ، فيمكنك نشر أغانيك. حتى يفهم الجمهور كلماتك بفضل أداة الترجمة المدمجة.'
+  song:
+    lyrics: '%{translation}'
+    title: '%{title_translation}'
+  card:
+    cree: 'تم إنشاؤها بواسطة'
+  languages:
+    ar: 'ar - العربية'
+    es: 'es - الإسبانية'
+    ru: 'ru - الروسية'
+    fr: 'fr - الفرنسية'
+    zh: 'zh - الصينية'
+    nb: 'no - النرويجية'
+    en: 'en - الإنجليزية'
+    pt: 'pt - البرتغالية'
+  activerecord:
+    models:
+      list:
+        one: 'قائمة'
+        other: 'القوائم'
+      song:
+        one: 'نشيد'
+        other: 'اغان'
+    attributes:
+      list:
+        name: 'اللقب'
+        name_nb: 'الاسم بالنرويجية'
+        name_fr: 'الاسم الفرنسي'
+        name_es: 'الاسم باللغة الاسبانية'
+        name_en: 'الاسم الانجليزي'
+        name_ar: 'الاسم بالعربي'
+        public: 'جمهور'
+        photo: 'صورة'
+        description: 'وصف'
+        description_nb: 'الوصف باللغة النرويجية'
+        description_fr: 'الوصف باللغة الفرنسية'
+        description_es: 'الوصف باللغة الاسبانية'
+        description_en: 'الوصف باللغة الإنجليزية'
+        description_ar: 'الوصف باللغة العربية'
+      song:
+        title: 'عنوان'
+        title_fr: 'العنوان الفرنسي'
+        title_en: 'عنوان باللغة الإنجليزية'
+        title_es: 'العنوان باللغة الاسبانية'
+        title_nb: 'العنوان بالنرويجية'
+        title_ar: 'العنوان بالعربية'
+        lyrics: 'كلمات الاغنية'
+        composer: 'ملحن'
+        translation_fr: 'ترجمة فرنسية'
+        translation_nb: 'الترجمة النرويجية'
+        translation_es: 'ترجمة إسبانية'
+        translation_en: 'الترجمة إلى الإنجليزية'
+        translation_ar: 'الترجمة العربية'
+    helpers:
+      select:
+        prompt: الرجاء التحديد
+      submit:
+        create: خلق %{model}
+        submit: يحفظ %{model}
+        update: 'تحديث %{model}'
+  pundit:
+    default: 'آسف لا يسمح لك للقيام بهذا العمل'
+    song_policy:
+      create?: "أنا آسف ، هذه نسخة تجريبية. لا يمكنك إنشاء أغنية لأن Google Cloud Translation API ليست مجانية"
+    list_policy:
+      create?: "أنا آسف ، هذه نسخة تجريبية. لا يمكنك إنشاء قائمة لأن Google Cloud Translation API ليست مجانية"

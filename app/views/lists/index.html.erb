@@ -1,5 +1,3 @@
-<!-- <div style="height: 60px;"></div>
- -->
 <div class="container justify-content-center">
   <div class="row justify-content-center p-2">
     <div style="height: 60px;"></div>
@@ -32,7 +30,7 @@
             <div class="songs m-3">
               <h2 class="text-center"><%= t('.songs', locale: locale) %></h2>
               <% if @songs.blank? %>
-              <h4 class="text-center">Vous n'avez pas encore créé de chanson</h4>
+              <h4 class="text-center"><%= t '.blank_song', locale: locale %></h4>
               <% else %>
               <% @songs.each do |song| %>
               <% if policy(song).show? %>
@@ -42,12 +40,8 @@
               <% end -%>
             </div>
           </div>
-
-      <%#= render 'shared/public' %>
         </div>
       </div>
-
-
     </div>
   </div>
 </div>

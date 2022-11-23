@@ -1,33 +1,330 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  buttons:
+    select_language: 'Select the Language'
+    connect: 'Sign In'
+    edit-list: 'Edit the List'
+    translate_name: 'Translate the Name again'
+    translate_description: 'Translate the Description again'
+    translate_lyrics: 'Translate the Lyrics again'
+    translate_title: 'Translate the Title again'
+    edit-song: 'Edit the Song'
+    lyrics: 'Lyrics'
+    deletes: 'Delete selected'
+    add_list_song: 'Add a Song to the List'
+    list_song: 'Click to find the list of your songs'
+    tonality: 'key'
+  fieldset:
+    placeholder:
+      first_name: 'First Name'
+      last_name: 'Last Name'
+      username: 'Username'
+      email: 'Email'
+      password: 'Password (%{number} characters minimum)'
+      confirm_password: 'Confirm Password'
+  hint:
+    password: 'leave blank if you don''t want to change it'
+    current_password: 'write your password to confirm the changes'
+    avatar: 'Choose a picture for your avatar'
+  swal:
+    accept: 'Yes'
+    cancel: 'Cancel'
+    confirm: 'Are you Sure ?'
+  navbar:
+    repertoire: 'Repertoire'
+    edit_profile: 'Edit Profile'
+  footer:
+    find_me: 'You can find my website and explore all my projects at'
+  pages:
+    home:
+      repertoire: 'Repertoire'
+      header_title_html: 'Login<br />
+                    and create your song programs online,<br />
+                    with a link to the lyrics of each of<br />them and their translation'
+      lists: 'Public Lists'
+      songs: 'Public Songs'
+      discover: 'Or discover the lists and songs made public by users'
+      write: 'Write your songs, lyrics, the app takes care of translations. You can create your lists according to your bands, your concerts, your different sets'
+      find: 'Easily find the order that suits you by dragging them from one place to another.'
+      only_you: 'It''s up to you alone to decide when your lists can be public or not, as well as the lyrics of your songs.'
+      qr_code: 'You have a QR Code generator tool. If you want to unveil your Repertoire for the evening. If you play abroad, you can publish your songs. So that the audience understands your lyrics thanks to the built-in translation tool.'
+  languages:
+    ar: 'ar - Arabic'
+    es: 'es - Spanish'
+    fr: 'fr - French'
+    nb: 'no - Norwegian'
+    en: 'en - English'
+  card:
+    cree: 'created by'
+  lists:
+    index:
+      title: 'Your Personal Space'
+      title_adm: 'Your Admin Area'
+      button_list: 'Create a List'
+      button_song: 'Create a Song'
+      blank: 'You haven''t created a list yet'
+      blank_song: 'You haven''t created a song yet'
+      lists: 'Lists'
+      songs: 'Songs'
+    show:
+      name_html: '%{name}'
+      description_html: '%{description}'
+  songs:
+    edit:
+      title: 'Your Song'
+  song:
+    lyrics: '%{translation}'
+    title: '%{title_translation}'
+  activerecord:
+    models:
+      list:
+        one: 'List'
+        other: 'Lists'
+      song:
+        one: 'Song'
+        other: 'Songs'
+    attributes:
+      list:
+        name: 'Name'
+        name_nb: 'Name in norwegian'
+        name_fr: 'Name in french'
+        name_es: 'Name in spanish'
+        name_en: 'Name in english'
+        name_ar: 'Name in arabic'
+        public: 'Public'
+        photo: 'Picture'
+        description: 'Description'
+        description_nb: 'Description in norwegian'
+        description_fr: 'Description in french'
+        description_es: 'Description in spanish'
+        description_en: 'Description in english'
+        description_ar: 'Description in arabic'
+      song:
+        title: 'Title'
+        title_fr: 'Title in french'
+        title_en: 'Title in english'
+        title_es: 'Title in spanish'
+        title_nb: 'Title in norwegian'
+        title_ar: 'Title in arabic'
+        lyrics: 'Lyrics'
+        composer: 'Composer'
+        translation_fr: 'Translation in french'
+        translation_nb: 'Translation in norwegian'
+        translation_es: 'Translation in spanish'
+        translation_en: 'Translation in english'
+        translation_ar: 'Translation in arabic'
+    errors:
+      messages:
+        record_invalid: 'Validation failed: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Cannot delete record because a dependent %{record} exists
+          has_many: Cannot delete record because dependent %{record} exist
+  pundit:
+    default: 'Sorry you are not allowed to perform this action'
+    translation-error: "I'm sorry, This is a Demo Version. You cannot create a %{record} because Google Cloud Translation API is not free"
+  date:
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    abbr_month_names:
+    -
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
+    day_names:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    formats:
+      default: "%d %B %Y"
+      short: "%d/%m/%Y"
+      long: "%e %B %Y"
+    month_names:
+    -
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_seconds:
+        one: 1 second
+        other: "%{count} seconds"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_days:
+        one: 1 day
+        other: "%{count} days"
+      x_months:
+        one: 1 month
+        other: "%{count} months"
+      x_years:
+        one: 1 year
+        other: "%{count} years"
+    prompts:
+      second: Second
+      minute: Minute
+      hour: Hour
+      day: Day
+      month: Month
+      year: Year
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: must be accepted
+      blank: can't be blank
+      confirmation: doesn't match %{attribute}
+      empty: can't be empty
+      equal_to: must be equal to %{count}
+      even: must be even
+      exclusion: is reserved
+      greater_than: must be greater than %{count}
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+      inclusion: is not included in the list
+      invalid: is invalid
+      less_than: must be less than %{count}
+      less_than_or_equal_to: must be less than or equal to %{count}
+      model_invalid: 'Validation failed: %{errors}'
+      not_a_number: is not a number
+      not_an_integer: must be an integer
+      odd: must be odd
+      other_than: must be other than %{count}
+      present: must be blank
+      required: must exist
+      taken: has already been taken
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+    template:
+      body: 'There were problems with the following fields:'
+      header:
+        one: 1 error prohibited this %{model} from being saved
+        other: "%{count} errors prohibited this %{model} from being saved"
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Billion
+          million: Million
+          quadrillion: Quadrillion
+          thousand: Thousand
+          trillion: Trillion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          eb: EB
+          gb: GB
+          kb: KB
+          mb: MB
+          pb: PB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ", and "
+      two_words_connector: " and "
+      words_connector: ", "
+  time:
+    am: am
+    formats:
+      default: "%d %B %Y"
+      long: "%e %B %Y"
+      short: "%d/%m/%Y"
+    pm: pm
+

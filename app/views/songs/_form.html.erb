@@ -1,6 +1,6 @@
 <div class="signup-okay">
   <h1 class="text-center"><b><%= t 'songs.edit.title', locale: locale %></b></h1>
-  <%= simple_form_for @song, locale: locale, html: { class: "form" } do |f| %>
+  <%= simple_form_for @song, section: session[:section], locale: I18n.locale, data: {turbo: false}, html: { class: "form" } do |f| %>
   <div data-controller="reveal" data-reveal-hidden-class="hidden">
     <fieldset style="margin: 0px;">
       <%= f.input :public %>
@@ -64,7 +64,7 @@
         </fieldset>
       </div>
       <% end -%>
-      <%= f.button :submit, data: { locale: locale }, class: "croyable" %>
+      <%= f.button :submit, locale: locale, class: "croyable" %>
       <% end %>
     </div>
   </div>

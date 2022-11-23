@@ -1,0 +1,97 @@
+.header-container{
+  z-index:1;
+  background-color: $lorange;
+}
+
+.header-photo {
+  padding-left: 50px;
+  z-index: -1;
+  background-image: url(pexels-pixabay-33779.jpg);
+  opacity: 0.7;
+  background-position: 60% 43%;
+  width: 100%;
+  height: 93vh;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  @media only screen and (max-width: 768px) {
+    height: 100vh;
+    padding-left: 0px;
+    justify-content: space-between;
+    background-position: 64% 60%;
+  }
+}
+
+.header-title {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  @media only screen and (max-width: 768px) {
+
+  }
+}
+
+.title {
+  letter-spacing: 2px;
+  line-height: 2.2rem;
+  position: relative;
+  top: 30%;
+  left: 5%;
+  width: 50%;
+  text-align: justify;
+  color: white;
+  @media only screen and (max-width: 768px) {
+    line-height: 1.6rem;
+    font-size: 18px;
+    top: 40%;
+    left: 6%;
+  }
+}
+
+.logo {
+  position: relative;
+  top: 30%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  color: white;
+  z-index: 2;
+  h1 {
+    position: relative;
+    left: 5%;
+    font-family: 'Russo One', sans-serif;
+  }
+  margin-bottom: 32px;
+  img {
+    width: 100px;
+    position: relative;
+    left: 3%;
+  }
+  @media only screen and (max-width: 768px) {
+    padding-top: 20px;
+    position: static;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    color: white;
+    z-index: 2;
+    h1 {
+      left: 3%;
+      order: 1;
+      font-family: 'Russo One', sans-serif;
+    }
+    margin-bottom: 20px;
+    img {
+      position: absolute;
+      top: 15%;
+      left: 18%;
+      order: 2;
+      width: 100px;
+      margin-right: 12px;
+    }
+  }
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_22_103929) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_22_211336) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_103929) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "list_songs", force: :cascade do |t|
+    t.integer "position"
+    t.string "tonality"
+    t.bigint "list_id", null: false
+    t.bigint "song_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_list_songs_on_list_id"
+    t.index ["song_id"], name: "index_list_songs_on_song_id"
   end
 
   create_table "lists", force: :cascade do |t|
@@ -101,6 +112,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_103929) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "list_songs", "lists"
+  add_foreign_key "list_songs", "songs"
   add_foreign_key "lists", "users"
   add_foreign_key "songs", "users"
 end

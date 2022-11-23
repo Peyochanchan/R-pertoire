@@ -1,1 +1,18 @@
-<h1> index.html.erb </h1>
+<div style="height: 60px;"></div>
+<div class="container">
+  <h1 class='text-center my-5 py-3'>Songs</h1>
+  <% if @songs.blank? %>
+    <h1>There is no song for the moment</h1>
+  <% end %>
+
+
+  <% @songs.each do |song| %>
+    <% if policy(song).show? %>
+      <%= link_to song_path(song) do %>
+        <%= render 'shared/card', item: song %>
+      <% end %>
+    <% end -%>
+  <% end -%>
+
+  <div style="height: 60px;"></div>
+</div>

@@ -1,0 +1,71 @@
+<div class="signup-okay">
+  <h1 class="text-center"><b><%= t 'songs.edit.title', locale: locale %></b></h1>
+  <%= simple_form_for @song, locale: locale, html: { class: "form" } do |f| %>
+  <div data-controller="reveal" data-reveal-hidden-class="hidden">
+    <fieldset style="margin: 0px;">
+      <%= f.input :public %>
+    </fieldset>
+    <div class="d-flex flex-column align-items-center">
+      <fieldset>
+        <%= f.input :title, input_html: { value: "#{params[:action] == 'edit' ? form_word_wrap(@song.title) : "" }", cols: '70', rows: '10' } %>
+      </fieldset>
+      <fieldset>
+        <%= f.input :composer, input_html: { cols: '70', rows: '10' } %>
+      </fieldset>
+      <fieldset>
+        <%= f.input :lyrics, input_html: { value: "#{params[:action] == 'edit' ? form_word_wrap(@song.lyrics) : "" }", cols: '70', rows: '10' } %>
+      </fieldset>
+    <br>
+    <hr>
+    <br>
+      <% if params[:action].include?('edit') %>
+      <fieldset class="d-flex justify-content-center form-check">
+        <%= f.input :new_song_translation_lyrics, label: "#{t 'buttons.translate_lyrics', locale: locale}" do %>
+        <%= check_box_tag :translate_lyrics, nil, nil, { data: { action:"change->reveal#toggleLyrics", reveal_target: 'checkbox_lyrics' } } %>
+        <% end %>
+      </fieldset>
+      <div data-reveal-target="item_lyrics">
+        <fieldset>
+          <%= form_reveal_song(f, :lyrics_en, 'lyrics') %>
+        </fieldset>
+        <fieldset>
+          <%= form_reveal_song(f, :lyrics_es, 'lyrics') %>
+        </fieldset>
+        <fieldset>
+          <%= form_reveal_song(f, :lyrics_nb, 'lyrics') %>
+        </fieldset>
+        <fieldset>
+          <%= form_reveal_song(f, :lyrics_ar, 'lyrics') %>
+        </fieldset>
+        <fieldset>
+          <%= form_reveal_song(f, :lyrics_fr, 'lyrics') %>
+        </fieldset>
+      </div>
+        <fieldset class="d-flex justify-content-center form-check">
+          <%= f.input :new_song_translation_title, label: "#{t 'buttons.translate_title', locale: locale}" do %>
+          <%= check_box_tag :translate_title, nil, nil, { data: { action:"change->reveal#toggleTitle", reveal_target: 'checkbox_title' } } %>
+          <% end %>
+        </fieldset>
+        <div data-reveal-target="item_title">
+        <fieldset>
+          <%= form_reveal_song(f, :title_en, 'title') %>
+        </fieldset>
+        <fieldset>
+          <%= form_reveal_song(f, :title_es, 'title') %>
+        </fieldset>
+        <fieldset>
+          <%= form_reveal_song(f, :title_nb, 'title') %>
+        </fieldset>
+        <fieldset>
+          <%= form_reveal_song(f, :title_ar, 'title') %>
+        </fieldset>
+        <fieldset>
+          <%= form_reveal_song(f, :title_fr, 'title') %>
+        </fieldset>
+      </div>
+      <% end -%>
+      <%= f.button :submit, data: { locale: locale }, class: "croyable" %>
+      <% end %>
+    </div>
+  </div>
+</div>

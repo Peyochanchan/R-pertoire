@@ -3,20 +3,19 @@
 # Table name: lists
 #
 #  id             :bigint           not null, primary key
-#  description    :string
-#  description_ar :string
-#  description_en :string
-#  description_es :string
-#  description_fr :string
-#  description_nb :string
+#  description    :text
+#  description_ar :text
+#  description_en :text
+#  description_es :text
+#  description_fr :text
+#  description_nb :text
 #  name           :string
 #  name_ar        :string
 #  name_en        :string
 #  name_es        :string
 #  name_fr        :string
 #  name_nb        :string
-#  public         :boolean          default(FALSE), not null
-#  qr_code        :string
+#  public         :boolean
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  user_id        :bigint           not null

@@ -29,5 +29,13 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class List < ApplicationRecord
+  has_many :list_songs, -> { order(position: :asc) }, dependent: :destroy
+  has_many :songs, through: :list_songs
   belongs_to :user
+  has_one_attached :photo
+  validates :name, presence: true
+  validates :description, presence: true
+  accepts_nested_attributes_for :list_songs, allow_destroy: true
+  accepts_nested_attributes_for :songs, allow_destroy: true
+  accepts_nested_attributes_for :user
 end

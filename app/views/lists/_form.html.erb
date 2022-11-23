@@ -1,0 +1,80 @@
+<div class="container signup-okay justify-content-center">
+  <h1 class="text-center">
+    <%= params[:action].include?('edit')? t('buttons.edit-list', locale:locale) : t('buttons.create-list', locale:locale) %>
+  </h1>
+  <%= simple_form_for @list, html: { class: "form" } do |f| %>
+  <div data-controller="reveal" data-reveal-hidden-class="hidden">
+  <fieldset>
+    <fieldset style="margin: 0px;">
+      <div style='width: 100%; display: flex; justify-content: center;'>
+        <%= f.input :public %>
+      </div>
+    </fieldset>
+    <%= f.input :name %>
+  </fieldset>
+    <% if params[:action].include?('edit') %>
+    <fieldset class="d-flex justify-content-center form-check">
+      <%= f.input :new_list_translation_name, label: "#{t 'buttons.translate_name', locale: locale}" do %>
+      <%= check_box_tag :translate_name, nil, nil, { data: { action:"change->reveal#toggleName", reveal_target: 'checkbox_name' } } %>
+      <% end %>
+    </fieldset>
+    <div data-reveal-target="item_name">
+      <fieldset>
+        <%= form_reveal_list(f, :name_fr, 'name') %>
+      </fieldset>
+      <fieldset>
+        <%= form_reveal_list(f, :name_en, 'name') %>
+      </fieldset>
+      <fieldset>
+        <%= form_reveal_list(f, :name_es, 'name') %>
+      </fieldset>
+      <fieldset>
+        <%= form_reveal_list(f, :name_nb, 'name') %>
+      </fieldset>
+      <fieldset>
+        <%= form_reveal_list(f, :name_ar, 'name') %>
+      </fieldset>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <% end -%>
+  <fieldset>
+    <%= f.input :description, as: :text, input_html: { style: "font-weight: bold !important" }%>
+  </fieldset>
+    <% if params[:action].include?('edit') %>
+    <fieldset class="d-flex justify-content-center form-check">
+      <%= f.input :new_list_translation_description, label: "#{t 'buttons.translate_description', locale: locale}" do %>
+      <%= check_box_tag :translate_description, nil, nil, { data: { action:"change->reveal#toggleDescription", reveal_target: 'checkbox_description' } } %>
+      <% end %>
+    </fieldset>
+    <div data-reveal-target="item_description">
+      <fieldset>
+        <%= form_reveal_list(f, :description_fr, 'description') %>
+      </fieldset>
+      <fieldset>
+        <%= form_reveal_list(f, :description_en, 'description') %>
+      </fieldset>
+      <fieldset>
+        <%= form_reveal_list(f, :description_es, 'description') %>
+      </fieldset>
+      <fieldset>
+        <%= form_reveal_list(f, :description_nb, 'description') %>
+      </fieldset>
+      <fieldset>
+        <%= form_reveal_list(f, :description_ar, 'description') %>
+      </fieldset>
+    </div>
+    <% end -%>
+    <%= f.label :photo, class: 'croyable' %>
+    <%= f.input :photo, as: :file, label: false,
+                hint: 'Choisir une photo pour illustrer la liste',
+                input_html: { class: 'my-3',
+                              style: 'content: none; background-color: hsl(34, 95%, 45%)'
+                            } %>
+    <div class="d-flex justify-content-center my-2">
+      <%= cl_image_tag @list.photo.key, size: "100X100" if @list.photo.present? %>
+    </div>
+    <%= f.button :submit, class: 'croyable' %>
+    <% end %>
+  </div>

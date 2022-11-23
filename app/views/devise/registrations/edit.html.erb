@@ -1,38 +1,75 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container-fond"></div>
+<div style="height: 300px;"></div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
+<div class="signup" style="top: 90%;">
+  <div class="signup-okay justify-content-center">
+    <h3 class="text-center"><b>Edit
+      <%= resource_name.to_s.humanize %></b>
+    </h3>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name, locale: locale), html: { method: :put, class: "form" }) do |f| %>
+    <%= f.error_notification %>
+    <fieldset class="email">
+      <%= f.input :email, label: false,
                 required: true,
-                input_html: { autocomplete: "current-password" } %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div class="d-flex align-items-center">
-  <div>Unhappy?</div>
-  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link" %>
+                autofocus: true,
+                input_html: { placeholder: "#{t('fieldset.placeholder.email', locale: locale, dir: 'auto')}",
+                  autocomplete: "email" } %>
+    </fieldset>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <p>Currently waiting confirmation for:
+      <%= resource.unconfirmed_email %>
+    </p>
+    <% end %>
+    <fieldset class="username">
+      <%= f.input :first_name, label: false,
+                required: true,
+                autofocus: true,
+                input_html: { placeholder: "#{t('fieldset.placeholder.first_name', locale: locale, dir: 'auto')}",
+                  autocomplete: "First Name" }%>
+    </fieldset>
+    <fieldset class="username">
+      <%= f.input :last_name, label: false,
+                required: true,
+                autofocus: true,
+                input_html: { placeholder: "#{t('fieldset.placeholder.last_name', locale: locale, dir: 'auto')}",
+                  autocomplete: "Last Name" }%>
+    </fieldset>
+    <fieldset class="username">
+      <%= f.input :nickname, label: false,
+                required: true,
+                autofocus: true,
+                input_html: { placeholder: "#{t('fieldset.placeholder.username', locale: locale, dir: 'auto')}",
+                  autocomplete: "pseudo" }%>
+    </fieldset>
+    <%= f.label :avatar, class: 'croyable' %>
+    <%= f.input :avatar, as: :file, label: false,
+                hint: "#{t('hint.avatar', locale: locale, dir: 'auto')}",
+                input_html: { class: 'my-3',
+                  style: 'content: none; background-color: hsl(34, 95%, 45%)' }%>
+  <% if resource.provider.nil? %>
+    <fieldset>
+          <%= f.input :password,
+                hint: "#{t('hint.password', locale: locale, dir: 'auto')}",
+                required: false,
+                input_html: { autocomplete: "#{t('fieldset.placeholder.password', number: "#{@minimum_password_length}", locale: locale, dir: 'auto')}" } %>
+    </fieldset>
+    <fieldset>
+      <%= f.input :password_confirmation,
+                required: false,
+                input_html: { autocomplete: "#{t('fieldset.placeholder.confirm_password', locale: locale, dir: 'auto')}" } %>
+    </fieldset>
+    <fieldset>
+<%= f.input :current_password,
+                hint: "#{t('hint.current_password', locale: locale, dir: 'auto')}",
+                required: true,
+                input_html: { autocomplete: "mot de passe actuel" } %>
+    </fieldset>
+    <% end %>
+    <div class="text-center">
+      <%= f.button :submit, "Mettre à jour", class: 'croyable' %>
+<%= link_to "#{t('devise.shared.links.back', locale: locale)}", :back, class: 'btn croyable' %>
+    </div>
 </div>
-
-<%= link_to "Back", :back %>
+<% end %>
+</div>
+</div>

@@ -2,6 +2,7 @@ module ControllerMacros
   def login_user
     before(:each) do
       @request.env['devise.mapping'] = Devise.mappings[:user]
+      request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google]
       sign_in FactoryBot.create(:user)
     end
   end
@@ -9,6 +10,7 @@ module ControllerMacros
   def login_admin
     before(:each) do
       @request.env['devise.mapping'] = Devise.mappings[:admin]
+      request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google]
       sign_in FactoryBot.create(:user, :admin)
     end
   end
@@ -16,6 +18,7 @@ module ControllerMacros
   def logout_user
     before(:each) do
       @request.env['devise.mapping'] = Devise.mappings[:user]
+      request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google]
       sign_out FactoryBot.create(:user)
     end
   end
@@ -23,16 +26,19 @@ module ControllerMacros
   def logout_admin
     before(:each) do
       @request.env['devise.mapping'] = Devise.mappings[:admin]
+      request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google]
       sign_out FactoryBot.create(:user, :admin)
     end
   end
 
   def setup_devise_mapping_user
     @request.env['devise.mapping'] = Devise.mappings[:user]
+    request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google]
   end
 
   def setup_devise_mapping_admin
     @request.env['devise.mapping'] = Devise.mappings[:user, :admin]
+    request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google]
   end
 
   def login_with_warden!

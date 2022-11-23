@@ -1,25 +1,66 @@
-<h2>Sign up</h2>
+<div class="container-fond">
+</div>
+<div style="height: 200px;"></div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
+<div class="signup">
+  <div class="signup-connect">
+    <h1 class="text-center">Omniauth</h1>
+    <%= link_to user_facebook_omniauth_authorize_path, method: :post,
+      class: "button btn-social btn-facebook" do %>
+    <i class="fa fa-facebook"></i><%= t 'devise.shared.links.sign_in_with_provider', provider: 'Facebook', dir: 'auto', locale: locale %>
+    <% end -%>
+    <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post,
+      class: "button btn-social btn-google" do %>
+    <i class="fa fa-google"></i><%= t 'devise.shared.links.sign_in_with_provider', provider: 'Google', dir: 'auto', locale: locale %>
+    <% end -%>
+    <%= link_to user_github_omniauth_authorize_path, method: :post,
+      class: "button btn-social btn-github" do %>
+    <i class="fa fa-github"></i><%= t 'devise.shared.links.sign_in_with_provider', provider: 'Github', dir: 'auto', locale: locale %>
+    <% end -%>
+    <%= render "devise/shared/links", class: "justify-content-center" %>
+  </div>
+  <div class="signup-classic">
+    <h3 class="text-center" style="margin-top: 12px;margin-bottom: 40px !important;"><%= t '.create', locale: locale %></h3>
+    <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name, locale: locale), data: {turbo: false}, html: { class: "form" } do |f| %>
+    <%= f.error_notification %>
+    <%#= f.hidden_field :locale, value: I18n.locale %>
+    <fieldset class="username">
+      <%= f.input :nickname, label: false,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
+                input_html: { placeholder: "#{t('fieldset.placeholder.username', locale: locale, dir: 'auto')}",
+                autocomplete: "pseudo" }%>
+    </fieldset>
+    <fieldset class="email">
+      <%= f.input :email, label: false,
                 required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
+                autofocus: true,
+                input_html: { placeholder: "#{t('fieldset.placeholder.email', locale: locale, dir: 'auto')}",
+                  autocomplete: "email" }%>
+    </fieldset>
+    <%#= f.input :first_name, label: "Prénom",
                 required: true,
-                input_html: { autocomplete: "new-password" } %>
+                autofocus: true,
+                input_html: { autocomplete: "prénom" }%>
+    <%#= f.input :last_name, label: "Nom",
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "nom" }%>
+    <%#= f.input :avatar, as: :file %>
+    <fieldset class="password">
+      <%= f.input :password, label: false,
+                required: true,
+                # hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { placeholder: "#{t('fieldset.placeholder.password', number: "#{@minimum_password_length}", locale: locale, dir: 'auto')}",
+                  autocomplete: "new-password" }%>
+    </fieldset>
+    <fieldset class="password">
+      <%= f.input :password_confirmation, label: false,
+                required: true,
+                input_html: { placeholder: "#{t('fieldset.placeholder.confirm_password', locale: locale, dir: 'auto')}",
+                  autocomplete: "new-password" }%>
+    </fieldset>
+    <%= f.submit "#{t('.sign_up', locale: locale)}", class: "croyable", style: "margin: 0px !important;" %>
+    <% end %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

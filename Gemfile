@@ -52,6 +52,13 @@ gem 'cloudinary'
 gem "font-awesome-rails"
 gem 'simple_form', github: 'heartcombo/simple_form'
 gem 'devise'
+gem 'omniauth-oauth2'
+# gem 'omniauth-github', github: 'intridea/omniauth-github'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+gem 'omniauth-rails_csrf_protection'
+
 gem 'activeadmin', github: 'activeadmin/activeadmin', branch: 'master'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem "pundit"

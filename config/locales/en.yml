@@ -33,8 +33,6 @@ en:
   navbar:
     repertoire: 'Repertoire'
     edit_profile: 'Edit Profile'
-  footer:
-    find_me: 'You can find my website and explore all my projects at'
   pages:
     home:
       repertoire: 'Repertoire'

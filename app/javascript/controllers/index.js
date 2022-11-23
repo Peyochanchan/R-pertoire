@@ -4,17 +4,11 @@
 
 import { application } from "./application"
 
-import ClockController from "./clock_controller"
-application.register("clock", ClockController)
-
 import CssController from "./css_controller"
 application.register("css", CssController)
 
 import DragController from "./drag_controller"
 application.register("drag", DragController)
-
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
 
 import InsertInListController from "./insert_in_list_controller"
 application.register("insert-in-list", InsertInListController)

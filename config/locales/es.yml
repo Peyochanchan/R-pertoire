@@ -47,8 +47,6 @@ es:
   navbar:
     repertoire: 'Repertorio'
     edit_profile: 'Editar perfil'
-  footer:
-    find_me: 'Puedes encontrar mi sitio web y explorar todos mis proyectos en'
   pages:
     home:
       repertoire: 'Repertorio'

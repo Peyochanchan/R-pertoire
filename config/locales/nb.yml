@@ -33,8 +33,6 @@ nb:
   navbar:
     repertoire: 'Repertoar'
     edit_profile: 'Rediger profil'
-  footer:
-    find_me: 'Du kan finne nettstedet mitt og utforske alle prosjektene mine på'
   pages:
     home:
       repertoire: 'Repertoar'

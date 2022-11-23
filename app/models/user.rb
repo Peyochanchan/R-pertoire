@@ -32,6 +32,7 @@ class User < ApplicationRecord
   has_many :songs, dependent: :destroy
   has_many :lists, dependent: :destroy
   has_one_attached :avatar
+  validates :email, presence: true
   validates :nickname, uniqueness: true
 
   def self.from_omniauth(auth)

@@ -34,8 +34,6 @@ fr:
   navbar:
     repertoire: 'Repertoire'
     edit_profile: 'Editer le Profil'
-  footer:
-    find_me: 'Vous pouvez trouver mon site web et explorer tous mes projets à l''adresse'
   lists:
     index:
       title: 'Votre Espace Personnel'

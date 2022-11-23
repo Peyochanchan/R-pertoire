@@ -61,8 +61,6 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'omniauth-rails_csrf_protection'
 
-gem 'activeadmin', github: 'activeadmin/activeadmin', branch: 'master'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem "pundit"
 
 gem 'google-cloud-translate-v2'
@@ -71,6 +69,7 @@ gem 'acts_as_list'
 gem 'rqrcode', '~> 2.0'
 gem 'prawn-svg'
 gem 'prawn'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -106,6 +105,6 @@ group :test do
   gem "selenium-webdriver"
   gem 'webdrivers'
   gem 'warden-rspec-rails'
-gem 'pundit-matchers', '~> 1.7.0'
+  gem 'pundit-matchers', '~> 1.7.0'
   gem 'shoulda-matchers', '~> 5.0'
 end

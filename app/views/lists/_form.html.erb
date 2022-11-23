@@ -2,7 +2,7 @@
   <h1 class="text-center">
     <%= params[:action].include?('edit')? t('buttons.edit-list', locale:locale) : t('buttons.create-list', locale:locale) %>
   </h1>
-  <%= simple_form_for @list, html: { class: "form" } do |f| %>
+  <%= simple_form_for @list, locale: locale, html: { class: "form" } do |f| %>
   <div data-controller="reveal" data-reveal-hidden-class="hidden">
   <fieldset>
     <fieldset style="margin: 0px;">

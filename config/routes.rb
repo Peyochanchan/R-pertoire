@@ -21,4 +21,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get '/poldeconf', to: 'pages#poldeconf'
+  get '/cgu', to: 'pages#cgu'
 end

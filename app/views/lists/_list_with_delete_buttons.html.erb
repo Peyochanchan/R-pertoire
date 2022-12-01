@@ -1,0 +1,23 @@
+<%= form_tag destroy_multiple_list_list_songs_path(list, list.list_songs, I18n.locale), method: :delete do %>
+  <div class="container flex-column justify-content-center" data-controller="<%= policy(@list).update? ? " drag" : "" %>"
+    data-insert-in-list-target="songs" data-drag-url="
+    <%= "/lists/list_id/list_songs/id/move" if policy(@list).update? %>">
+    <% list.list_songs.order(position: :asc).each do |lsong, i| %>
+    <%= render 'list_song', lsong: lsong, list: @list %>
+    <% end -%>
+  </div>
+  <div class="d-flex justify-content-end">
+    <% if user_signed_in? && (current_user == list.user || current_user.admin?) %>
+    <% if list.list_songs.any? %>
+    <%= submit_tag "#{t('buttons.deletes', locale: locale)}", class: "btn btn-outline-dark",
+      data: {
+        controller: 'swal',
+        action: 'click->swal#showAlert',
+        swal_title_value: "#{t('swal.confirm', locale: locale)}",
+        swal_confirm_text_value: "#{t('swal.accept', locale: locale)}",
+        swal_cancel_text_value: "#{t('swal.cancel', locale: locale)}"
+      } %>
+    <% end -%>
+    <% end -%>
+  </div>
+<% end -%>

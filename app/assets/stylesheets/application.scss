@@ -46,3 +46,12 @@ a:hover {
   background: linear-gradient(0.47turn, hsl(35, 95%, 56%), hsl(21, 67%, 46%));
   box-shadow: 0 3px 25px hsla(0, 0%, 0%, 0.2%);
 }
+
+.cadre-description {
+   width: 70%;
+   margin: 40px auto;
+   text-align: justify;
+   border: 1px solid black;
+   padding: 20px;
+   border-radius: 12px;
+}

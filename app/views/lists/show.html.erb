@@ -2,70 +2,50 @@
 <div class="container">
   <div class="wrapper m-2">
     <div class="cadre-liste p-2">
+
+      <!-- LIST INFORMATIONS -->
       <% if @list.photo.attached? %>
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center border-bottom p-4">
           <%= cl_image_tag @list.photo.key, size: '150X150' %>
         </div>
-        <h1 class="text-center m-2 p-2 border-top">
-          <%= sanitize @list.name %>
-        </h1>
+      <% end %>
+
+      <h1 class="text-center m-2 p-2">
+        <%= @list.name %>
+      </h1>
+      <% if !@same_language  %>
         <h1 class="text-center m-2 p-2" style="font-size: smaller;">
           <%= "(#{sanitize(t('lists.show.name_html', name: @list[translater('name')[I18n.locale]], locale: locale))})" %>
         </h1>
-        <p style="width: 70%; margin: 40px auto; text-align: justify; border: 1px solid black; padding: 20px; border-radius: 12px;">
-          <%= sanitize(t('.description_html', description: @list[@description_translater_hash[I18n.locale]])) %>
-        </p>
-      <% else %>
-        <h1 class="text-center m-2 p-2">
-          <%= sanitize(@list.name) %>
-        </h1>
-        <p><%= sanitize(t('.description_html', description: @list[@description_translater_hash[I18n.locale]])) %></p>
-      <% end %>
+      <% end -%>
+      <p class="cadre-description">
+        <%= sanitize(t('.description_html', description: @list[translater('description')[I18n.locale]], locale: locale)) %>
+      </p>
       <% if user_signed_in? %>
         <div class="d-flex justify-content-center">
           <%= link_to "#{t('buttons.edit-list', locale: locale)}", edit_list_path(@list, locale: locale), class: "btn btn-outline-dark text-center" if policy(@list).edit? %>
         </div>
         <br>
       <% end -%>
-      <h3 class="text-center">
-        <%= pluralize @list.list_songs.size, "Titre", plural: 'Titres' %>
-      </h3>
+      <!-- LIST OF SONGS -->
       <div class="list" data-controller="insert-in-list">
-        <%= form_tag destroy_multiple_list_list_songs_path(@list, @list.list_songs, I18n.locale), method: :delete do %>
-          <div class="container flex-column justify-content-center"
-                data-controller="<%= policy(@list).update? ? " drag" : "" %>"
-                data-insert-in-list-target="songs"
-                data-drag-url="<%= "/lists/list_id/list_songs/id/move" if policy(@list).update? %>">
-            <% @list.list_songs.order(position: :asc).each do |lsong, i| %>
-              <%= render 'list_song', lsong: lsong, list: @list %>
-            <% end %></div>
-        <div class="d-flex justify-content-end">
-          <% if user_signed_in? && (current_user == @list.user || current_user.admin?) %>
-            <% if @list.list_songs.any? %>
-              <%= submit_tag "#{t('buttons.deletes', locale: locale)}", class: "btn btn-outline-dark",
-                data: {
-                  controller: 'swal',
-                  action: 'click->swal#showAlert',
-                  swal_title_value: "#{t('swal.confirm', locale: locale)}",
-                  swal_confirm_text_value: "#{t('swal.accept', locale: locale)}",
-                  swal_cancel_text_value: "#{t('swal.cancel', locale: locale)}"
-                } %>
-            <% end -%>
-          <% end -%>
-        </div>
-      <% end -%>
-      <%= render 'list_songs/form', list: @list, list_song: @list_song %>
-    </div>
-    <% if policy(@list).show? %>
-      <div class="qr-code d-flex justify-content-center my-4">
-      <%= link_to list_path(@list, format: 'pdf', locale: locale) do %>
-        <div id="qr_code">
-        <%= @list.qr_code.html_safe %>
-        </div>
-        <%#= image_tag "logo_repertoire.png", class: "qr-code-logo" %>
-      <% end -%>
+        <%= render 'list_with_delete_buttons', list: @list %>
+        <%= render 'list_songs/form', list: @list, list_song: @list_song %>
       </div>
-      <p class="text-center"><%= t 'buttons.export', locale: locale %></p>
+
+      <!-- QR CODE AND LINK TO PDF -->
+      <% if policy(@list).show? %>
+      <div class="qr-code d-flex justify-content-center my-4">
+        <%= link_to list_path(@list, format: 'pdf', locale: locale) do %>
+          <div id="qr_code">
+            <%= @list.qr_code.html_safe %>
+          </div>
+        <% end -%>
+      </div>
+      <p class="text-center">
+        <%= t 'buttons.export', locale: locale %>
+      </p>
     <% end -%>
+
   </div>
 </div>

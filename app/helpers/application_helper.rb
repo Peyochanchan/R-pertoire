@@ -12,15 +12,4 @@ module ApplicationHelper
       line.length > line_width ? line.gsub(/(.{1,#{line_width}})(\s+|$)/, "\\1#{break_sequence}").rstrip : line
     end * break_sequence
   end
-
-  def form_reveal_list(form, field, target)
-    form.input field.to_sym, input_html: { data: { reveal_target: target } }
-  end
-
-  def form_reveal_song(form, field, target)
-    form.input field, input_html: { data: { reveal_target: target },
-                                    value: form_word_wrap(@song[field]),
-                                    cols: '70',
-                                    rows: '10' }
-  end
 end

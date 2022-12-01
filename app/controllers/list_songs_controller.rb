@@ -90,6 +90,5 @@ class ListSongsController < ApplicationController
 
   def list_song_params
     params.require(:list_song).permit(:list_id, :song_id, :position, :tonality, song_ids: [])
-    # , songs: %i[id title composer]
   end
 end

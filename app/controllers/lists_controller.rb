@@ -1,9 +1,11 @@
-require "open-uri"
+require 'open-uri'
 
 class ListsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_params, only: %i[show edit update destroy]
   before_action :update_position, only: :show
+  include GoogleApi
+  include Qrcode
 
   def index
     @lists = policy_scope(List).order(public: :asc)
@@ -16,16 +18,10 @@ class ListsController < ApplicationController
     @list_song.list_id = @list.id
     @songs = policy_scope(Song)
     @lsongs = @list.list_songs.order(position: :asc)
-    @description_translater_hash = I18n.available_locales.to_h { |lang| [lang, "description_#{lang}".to_sym] }
-    @name_translater_hash = I18n.available_locales.to_h { |lang| [lang, "name_#{lang}".to_sym] }
-    @list.qr_code = RQRCode::QRCode.new(list_url(@list)).as_svg(
-      offset: 0,
-      color: '000',
-      module_size: 5,
-      shape_rendering: 'geometricPrecision',
-      standalone: true,
-      use_path: true
-    )
+    @description = helpers.translater('description')
+    @name = helpers.translater('name')
+    detect_language(@list.description)
+    generate_qrcode(@list)
     respond_to do |format|
       format.html
       format.pdf do
@@ -47,8 +43,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
     @list.user = current_user
     authorize @list
-    update_list_translation(@list, 'name')
-    update_list_translation(@list, 'description')
+    %w[name description].each { |attribute| translation(@list, attribute) }
     respond_to do |format|
       if @list.save
         format.html { redirect_to list_path(@list), notice: 'List was successfully created.' }
@@ -67,7 +62,7 @@ class ListsController < ApplicationController
 
   def update
     authorize @list
-    translate_again(@list)
+    translate_again(@list, %w[description name])
     respond_to do |format|
       if @list.update(list_params)
         format.html { redirect_to list_path(@list), notice: 'List was successfully updated.' }
@@ -89,23 +84,6 @@ class ListsController < ApplicationController
   end
 
   private
-
-  def translate_again(list)
-    update_list_translation(list, 'description') if params[:translate_description]
-    update_list_translation(list, 'name') if params[:translate_name]
-  end
-
-  def update_list_translation(list, attribute)
-    translater_hash = I18n.available_locales.to_h { |lang| [lang, "#{attribute}_#{lang}".to_sym] }
-    translate = Google::Cloud::Translate::V2.new(
-      key: ENV.fetch('CLIENT_ID')
-    )
-    list[attribute.to_sym] = params[:list][attribute.to_sym]
-    translater_hash.each do |k, v|
-      list[v] = translate.translate list[attribute.to_sym].html_safe, to: k.to_s
-      list[v] = helpers.sanitize(list[v])
-    end
-  end
 
   def update_position
     @list = List.find(params[:id])
@@ -133,9 +111,9 @@ class ListsController < ApplicationController
                                  :description_nb,
                                  :description_ar,
                                  :public,
-                                 :qr_code,
                                  :user_id,
                                  :photo,
+                                 :qr_code,
                                  song_ids: [])
   end
 end

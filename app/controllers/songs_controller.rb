@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show]
   before_action :set_params, only: %i[show edit update destroy]
+  include GoogleApi
 
   def index
     @songs = policy_scope(Song)
@@ -20,9 +21,8 @@ class SongsController < ApplicationController
     @song = Song.new(song_params)
     @song.user = current_user
     authorize @song
-    update_song_translation(@song, 'lyrics')
-
-    update_song_translation(@song, 'title')
+    translation(@song, 'lyrics')
+    translation(@song, 'title')
     respond_to do |format|
       if @song.save
         format.html { redirect_to song_url(@song), notice: 'Song was successfully created.' }
@@ -36,11 +36,12 @@ class SongsController < ApplicationController
 
   def edit
     authorize @song
+    # raise
   end
 
   def update
     authorize @song
-    translate_song_again(@song)
+    translate_again(@song, %w[title lyrics])
     respond_to do |format|
       if @song.update(song_params)
         format.html { redirect_to song_path(@song), notice: 'Song was successfully updated.' }
@@ -63,11 +64,6 @@ class SongsController < ApplicationController
 
   private
 
-  def translate_song_again(list)
-    update_song_translation(list, 'title') if params[:translate_title]
-    update_song_translation(list, 'lyrics') if params[:translate_lyrics]
-  end
-
   def set_params
     @song = Song.find(params[:id])
   end
@@ -89,31 +85,4 @@ class SongsController < ApplicationController
                                  :composer,
                                  :user_id)
   end
-
-  def update_song_translation(song, attribute)
-    translater_hash = I18n.available_locales.to_h { |lang| [lang, "#{attribute}_#{lang}".to_sym] }
-    translate = Google::Cloud::Translate::V2.new(
-      key: ENV.fetch('CLIENT_ID')
-    )
-    if attribute == 'lyrics'
-      song.lyrics = params[:song][:lyrics].gsub!(%r{\r|\n|(<br/>)|(<br><br>)|(<br/><br/>)}, '<br/>')
-    else
-      song[attribute.to_sym] = params[:song][attribute.to_sym]
-    end
-    translater_hash.each do |k, v|
-      song[v] = translate.translate song[attribute.to_sym], to: k.to_s
-    end
-  end
-
-  def detect_language(target)
-    translate = Google::Cloud::Translate::V2.new(
-      key: ENV.fetch('CLIENT_ID')
-    )
-    detection = translate.detect target
-    @same_language = detection.language
-  end
-
-  # def attributes_translation
-  #   @lyrics_translater_hash = I18n.available_locales.map { |lang| [lang, "translation_#{lang}".to_sym] }.to_h
-  # end
 end

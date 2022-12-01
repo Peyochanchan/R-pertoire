@@ -1,4 +1,6 @@
 class ListPdf < Prawn::Document
+  include ApplicationHelper
+
   def initialize(list, lsongs)
     super()
     @list = list
@@ -17,9 +19,6 @@ class ListPdf < Prawn::Document
   end
 
   def text_content(order)
-    @description_translater_hash = I18n.available_locales.map { |lang| [lang, "description_#{lang}".to_sym] }.to_h
-    @name_translater_hash = I18n.available_locales.map { |lang| [lang, "name_#{lang}".to_sym] }.to_h
-    example
     round_rectangle
     image StringIO.open(@list.photo.download), height: 100, at: [10, cursor - 10] if @list.photo.present?
     bounding_box([190, cursor], width: 300, height: 100) do
@@ -42,40 +41,21 @@ class ListPdf < Prawn::Document
         align: :left,
         leading: 16
       end
-      # svg StringIO.open(@list.qr_code.html_safe), width: 40, at: [460, y_position - 15] if index == 13
     end
 
     start_new_page
     span(350, position: :center) do
       move_down 20
       font('Courier', size: 32) do
-        text "<b>#{@list[@name_translater_hash[I18n.locale]]}</b>", inline_format: true, align: :center
+        text "<b>#{@list[translater('name')[I18n.locale]]}</b>", inline_format: true, align: :center
       end
-      # font('Courier', size: 14) do
-      #   text "<b>#{@list[@name_translater_hash[I18n.locale]]}</b>", inline_format: true, align: :center
-      # end
       move_down 20
     end
     span(400, position: :center) do
-      text "#{@list[@description_translater_hash[I18n.locale]]}", align: :justify
+      text "#{@list[translater('description')[I18n.locale]]}", align: :justify
     end
     move_down 70
     svg StringIO.open(@list.qr_code.html_safe), position: :center, width: 300
-  end
-
-  def example
-    # string = 'page <page> of <total>'
-    # options = {
-    #   at: [bounds.right - 150, 0],
-    #   width: 150,
-    #   align: :right,
-    #   page_filter: (1..7),
-    #   start_count_at: 1,
-    #   color: '33333'
-    # }
-    # number_pages string, options
-    # start_new_page
-    # text "See. This page isn't numbered and doesn't count towards the total."
   end
 
   def round_rectangle
@@ -98,6 +78,5 @@ class ListPdf < Prawn::Document
       }
       number_pages(string, options)
     end
-    # svg StringIO.open(@list.qr_code.html_safe), width: 40
   end
 end

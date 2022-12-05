@@ -18,8 +18,6 @@ class ListsController < ApplicationController
     @list_song.list_id = @list.id
     @songs = policy_scope(Song)
     @lsongs = @list.list_songs.order(position: :asc)
-    @description = helpers.translater('description')
-    @name = helpers.translater('name')
     detect_language(@list.description)
     generate_qrcode(@list)
     respond_to do |format|

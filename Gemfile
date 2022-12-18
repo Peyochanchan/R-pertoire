@@ -108,3 +108,5 @@ group :test do
   gem 'pundit-matchers', '~> 1.7.0'
   gem 'shoulda-matchers', '~> 5.0'
 end
+
+gem "cssbundling-rails", "~> 1.1"

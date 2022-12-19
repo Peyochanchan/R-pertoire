@@ -3,8 +3,6 @@ The user can post the lyrics, the description, the title of the Song that will b
 He can create several Lists with a Name, a description, and his songs in it.
 He can order them the way he wants, translate them (name and description of the list – lyrics and title of the songs) in five different languages(ar|en|es|fr|nb). It uses Google Cloud Translation API.
 
-https://repertoire.onrender.com/
-
 Finally when the program is built, the list give access via QRCode, and print a pdf with:
 - The Name of the List (and a picture)
 — The Songs with their own tonality)
